@@ -1,32 +1,38 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <!--头部区域-->
+    <div style="height: 60px; line-height: 60px; background-color: white; margin-bottom: 2px">
+      <img src="@/assets/logo.png" alt="" style="width: 60px; height: 60px; position: relative; top: 4px; left: 5px">
+      <span style="margin-left: 12px; font-size: 40px">MovieHub</span>
+    </div>
+
+    <!--侧边栏和主体-->
+    <div style="display: flex">
+      <!--侧边栏导航-->
+      <div style="width: 200px; min-height: calc(100vh - 62px); overflow: hidden; margin-right: 2px;background-color: white">
+        <el-menu :default-active="$route.path" router class="el-menu-demo" >
+          <el-menu-item index="/">
+            <i class="el-icon-s-help"></i>
+            <span>首页</span>
+          </el-menu-item>
+          <el-submenu>
+            <template slot="title">
+              <i class="el-icon-s-fold"></i>
+              <span>分类</span>
+            </template>
+            <el-menu-item index="/about">选项1</el-menu-item>
+            <el-menu-item index="/about">选项2</el-menu-item>
+            <el-menu-item index="/about">选项3</el-menu-item>
+            <el-menu-item index="/about">选项4</el-menu-item>
+          </el-submenu>
+        </el-menu>
+      </div>
+
+      <!--主体-->
+      <div style="flex: 1; background-color: white">
+        <router-view/>
+      </div>
+    </div>
+
   </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
