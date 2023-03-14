@@ -6,7 +6,7 @@ import App from './App.vue';
 import '@/assets/global.css'
 
 Vue.config.productionTip = false
-Vue.use(ElementUI);
+Vue.use(ElementUI,{size:'small'});//small medium mini
 
 new Vue({
   router,

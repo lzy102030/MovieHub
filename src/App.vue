@@ -10,12 +10,12 @@
     <div style="display: flex">
       <!--侧边栏导航-->
       <div style="width: 200px; min-height: calc(100vh - 62px); overflow: hidden; margin-right: 2px;background-color: white">
-        <el-menu :default-active="$route.path" router class="el-menu-demo" >
+        <el-menu :default-active="$route.path" :default-openeds="['/']" router class="el-menu-demo" >
           <el-menu-item index="/">
             <i class="el-icon-s-help"></i>
             <span>首页</span>
           </el-menu-item>
-          <el-submenu>
+          <el-submenu index="/">
             <template slot="title">
               <i class="el-icon-s-fold"></i>
               <span>分类</span>
@@ -29,7 +29,7 @@
       </div>
 
       <!--主体-->
-      <div style="flex: 1; background-color: white">
+      <div style="flex: 1; background-color: white; padding: 10px">
         <router-view/>
       </div>
     </div>
