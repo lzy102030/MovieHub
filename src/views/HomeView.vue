@@ -8,17 +8,34 @@
 
     <!--card-->
     <div>
-      <el-carousel :interval="4000" type="card" height="300px">
-        <el-carousel-item v-for="item in 6" :key="item">
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">{{ item }}</img>
-        </el-carousel-item>
-      </el-carousel>
+        <el-carousel :interval="4000" type="card" height="200px">
+          <el-carousel-item v-for="item in imgList" :key="item" @change="carouselChange">
+            <el-image
+                style="width: 100%; height: 100%"
+                :src="item.img"></el-image>
+          </el-carousel-item>
+        </el-carousel>
     </div>
-    <div>
+
+    <div style="margin-left: 0px">
       <el-row>
-        <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
-          <el-card :body-style="{ padding: '0px' }">
-            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+        <el-col :span="4" v-for="(o, index) in 4" :key="o" :offset="index > 0 ? 2 : 0">
+          <el-card :body-style="{ padding: '0px' } ">
+            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                 class="image">
+            <div style="padding: 14px;">
+              <span>好吃的汉堡</span>
+              <div class="bottom clearfix">
+                <time class="time">{{ currentDate }}</time>
+                <el-button type="text" class="button">操作按钮</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+        <el-col :span="4" v-for="(o, index) in 4" :key="o" :offset="index > 0 ? 2 : 0" style="margin-top: 20px">
+          <el-card :body-style="{ padding: '0px' } ">
+            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                 class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -84,11 +101,11 @@
 }
 
 .el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
+  background-color: black;
 }
 
 .el-carousel__item:nth-child(2n+1) {
-  background-color: #d3dce6;
+  background-color: white;
 }
 </style>
 
@@ -100,24 +117,32 @@ export default {
   data() {
     return {
       currentDate: new Date(),
-      params:{
-        total: 0,
+      imgList: [
+        {id:0,img:require("@/assets/logo.png")},
+        {id:1,img:require("@/assets/test.jpg")},
+        {id:2,img:require("@/assets/logo.png")},
+      ],
+      params: {
+        total: 100,
         pageNum: 1,
-
       }
     };
   },
   created() {
     this.load()
   },
-  methods:{
-    load(){
-      request.get('/test').then(res=>{
-        this.params.total=res.total
-      })
+  methods: {
+    load() {
+      // request.get('/test').then(res => {
+      //   this.params.total = res.total
+      // })
     },
-    handlecurrentChange(pageNum){
+    handlecurrentChange(pageNum) {
       console.log(pageNum)
+    },
+    carouselChange(now, prev){
+      console.log("图片索引切换: " + prev + "--->" + now);
+      //this.photo = "@/assets/logo.png"
     }
   }
 }
