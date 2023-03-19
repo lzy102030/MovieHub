@@ -1,14 +1,14 @@
 <template>
   <div>
-    <!--搜索框-->
-    <div style="margin-bottom: 20px">
-      <el-input style="width: 240px" placeholder="请输入搜索内容"></el-input>
-      <el-button type="primary" style="margin-left: 10px"><i class="el-icon-search"></i>搜索</el-button>
-    </div>
 
-    <!--card-->
+<!--    <div style="margin-bottom: 20px; text-align: center">-->
+<!--      <el-input style="width: 240px; " placeholder="请输入搜索内容"></el-input>-->
+<!--      <el-button type="primary" style="margin-left: 10px"><i class="el-icon-search"></i>搜索</el-button>-->
+<!--    </div>-->
+
+    <!--走马灯-->
     <div>
-        <el-carousel :interval="4000" type="card" height="200px">
+        <el-carousel :interval="4000" type="card" height="250px">
           <el-carousel-item v-for="item in imgList" :key="item" @change="carouselChange">
             <el-image
                 style="width: 100%; height: 100%"
@@ -16,15 +16,15 @@
           </el-carousel-item>
         </el-carousel>
     </div>
-
+    <!--card-->
     <div style="margin-left: 0px">
       <el-row>
-        <el-col :span="4" v-for="(o, index) in 4" :key="o" :offset="index > 0 ? 2 : 0">
+        <el-col :span="4" v-for="item in movie" :key="item" :offset="item.id > 0 ? 2 : 1">
           <el-card :body-style="{ padding: '0px' } ">
             <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
                  class="image">
             <div style="padding: 14px;">
-              <span>好吃的汉堡</span>
+              <span>{{item.name}}</span>
               <div class="bottom clearfix">
                 <time class="time">{{ currentDate }}</time>
                 <el-button type="text" class="button">操作按钮</el-button>
@@ -32,12 +32,12 @@
             </div>
           </el-card>
         </el-col>
-        <el-col :span="4" v-for="(o, index) in 4" :key="o" :offset="index > 0 ? 2 : 0" style="margin-top: 20px">
+        <el-col :span="4" v-for="item in movie" :key="item" :offset="item.id > 0 ? 2 : 1" style="margin-top: 20px">
           <el-card :body-style="{ padding: '0px' } ">
             <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
                  class="image">
             <div style="padding: 14px;">
-              <span>好吃的汉堡</span>
+              <span>{{item.name}}</span>
               <div class="bottom clearfix">
                 <time class="time">{{ currentDate }}</time>
                 <el-button type="text" class="button">操作按钮</el-button>
@@ -92,14 +92,6 @@
   clear: both
 }
 
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 200px;
-  margin: 0;
-}
-
 .el-carousel__item:nth-child(2n) {
   background-color: black;
 }
@@ -121,11 +113,18 @@ export default {
         {id:0,img:require("@/assets/logo.png")},
         {id:1,img:require("@/assets/test.jpg")},
         {id:2,img:require("@/assets/logo.png")},
+        {id:3,img:require("@/assets/test.jpg")},
       ],
       params: {
         total: 100,
         pageNum: 1,
-      }
+      },
+      movie:[
+        {id:0,name:'superman'},
+        {id:1,name:'spiderman'},
+        {id:2,name:'badman'},
+        {id:3,name:'revenger'},
+      ],
     };
   },
   created() {
