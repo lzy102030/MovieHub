@@ -129,7 +129,9 @@ export default {
       //this.photo = "@/assets/logo.png"
     },
     openDetail(){
-      this.$router.push('/movie')
+      // this.$router.push('/movie')
+      const routerUrl = this.$router.resolve('/movie')
+      window.open(routerUrl.href)
     }
   }
 }
