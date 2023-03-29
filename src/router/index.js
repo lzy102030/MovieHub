@@ -12,6 +12,12 @@ const routes = [
         name: 'Login',
         component: () => import('@/views/login/Login.vue')
     },
+    //登录1
+    {
+        path: '/login1',
+        name: 'Login1',
+        component: () => import('@/views/login/Login1.vue')
+    },
     {
         path: '/movie',
         name: 'Movie',
