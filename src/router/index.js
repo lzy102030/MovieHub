@@ -12,16 +12,15 @@ const routes = [
         name: 'Login',
         component: () => import('@/views/login/Login.vue')
     },
-    //登录1
-    {
-        path: '/login1',
-        name: 'Login1',
-        component: () => import('@/views/login/Login1.vue')
-    },
     {
         path: '/movie',
         name: 'Movie',
         component: () => import('@/views/movie/Movie.vue')
+    },
+    {
+        path: '/searchResult',
+        name: 'SearchResult',
+        component: () => import('@/views/movie/SearchResult.vue')
     },
     //主页
     {
@@ -36,17 +35,51 @@ const routes = [
                 component: () => import('@/views/home/HomeView.vue'),
             },
             {
-                path: 'about',
-                name: 'about',
+                path: 'category',
+                name: 'category',
                 // route level code-splitting
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
-                component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+                component: () => import(/* webpackChunkName: "about" */ '../views/movie/Category.vue')
             },
-
+            // {
+            //     path: 'searchResult',
+            //     name: 'searchResult',
+            //     // route level code-splitting
+            //     // this generates a separate chunk (about.[hash].js) for this route
+            //     // which is lazy-loaded when the route is visited.
+            //     component: () => import(/* webpackChunkName: "about" */ '../views/movie/SearchResult.vue')
+            // },
         ]
     },
-
+    //个人中心
+    {
+        path: '/personal',
+        name: 'Personal',
+        component: () => import("@/views/user/UserInfo.vue"),
+        children: [
+            {
+                path: '/personal/info',
+                name: 'Info',
+                component: () => import("@/views/user/Info.vue")
+            },
+            {
+                path: '/personal/modify-password',
+                name: 'ModifyPassword',
+                component: () => import("@/views/user/ModifyPassword.vue")
+            },
+            {
+                path: '/personal/mycollect',
+                name: 'MyCollect',
+                component: () => import("@/views/user/MyCollect.vue")
+            },
+            {
+                path: '/personal/myHistory',
+                name: 'MyHistory',
+                component: () => import("@/views/user/History.vue")
+            }
+        ]
+    },
 ]
 
 const router = new VueRouter({
